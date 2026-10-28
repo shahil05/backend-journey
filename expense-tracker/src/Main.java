@@ -1,16 +1,22 @@
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
-        List<Expense> expenses = new ArrayList<>();
 
-        expenses.add(new Expense("jalebi", 25, "food"));
-        expenses.add(new Expense("bhindi", 10, "vegetable"));
-        expenses.add(new Expense("fish", 5, "meat"));
+        ExpenseService service = new ExpenseService();
 
-        for (Expense e : expenses) {
-            System.out.println(e.getDescription() + " - " + e.getAmount());
+        service.addExpense(new Expense("jalebi", 25, new Category("food")));
+        service.addExpense(new Expense("bhindi", 10, new Category("vegetable")));
+        service.addExpense(new Expense("fish", 5, new Category("meat")));
+
+        for(Expense e: service.getAll()){
+            System.out.println(e);
         }
+        System.out.println("Total: " + service.total());
+
+
+
+
+
     }
 }
