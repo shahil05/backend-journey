@@ -3,7 +3,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        ExpenseService service = new ExpenseService();
+        ExpenseService service = new ExpenseService(new InMemoryExpenseRepository());
 
         service.addExpense(new Expense("jalebi", 25, new Category("food")));
         service.addExpense(new Expense("bhindi", 10, new Category("vegetable")));

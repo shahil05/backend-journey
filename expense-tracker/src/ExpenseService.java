@@ -1,22 +1,26 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExpenseService {
-    private final List<Expense> expenses = new ArrayList<>();
+
+    private final ExpenseRepository repository;
+
+    public ExpenseService(ExpenseRepository repository) {
+        this.repository = repository;
+    }
 
     public void addExpense(Expense expense) {
-        expenses.add(expense);
+        repository.save(expense);
     }
 
     public double total() {
         double sum = 0;
-        for (Expense e : expenses) {
+        for (Expense e : repository.findAll()) {
             sum += e.getAmount();
         }
         return sum;
     }
 
     public List<Expense> getAll() {
-        return List.copyOf(expenses);
+        return repository.findAll();
     }
 }
